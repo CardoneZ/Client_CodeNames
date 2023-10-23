@@ -19,9 +19,12 @@ namespace CodeNamesClientSide.Windows
     /// </summary>
     public partial class SocialWindow : Window
     {
+        private MusicManager musicManager;
         public SocialWindow()
         {
             InitializeComponent();
+            musicManager = new MusicManager("Media/Music/BackgroundCheck.wav");
+            musicManager.PlayMusic();
         }
 
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
@@ -31,6 +34,9 @@ namespace CodeNamesClientSide.Windows
             mainMenulWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
         }
     }
 }

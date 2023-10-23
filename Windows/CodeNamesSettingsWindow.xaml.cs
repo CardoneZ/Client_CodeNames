@@ -19,10 +19,19 @@ namespace CodeNamesClientSide.Windows
     /// </summary>
     public partial class CodeNamesSettingsWindow : Window
     {
-        public CodeNamesSettingsWindow()
+        private MusicManager musicManager;
+        public CodeNamesSettingsWindow(MusicManager manager)
         {
             InitializeComponent();
+            musicManager = manager;
             Goback.MouseLeftButtonDown += Goback_MouseLeftButtonDown;
+            musicManager = new MusicManager("Media/Music/SolvingTheCrimeFaster.wav");
+            musicManager.PlayMusic();
+        }
+
+        private void ToggleMusicButton_Click(object sender, RoutedEventArgs e)
+        {
+            musicManager.ToggleMusic();
         }
 
         private void Goback_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -32,8 +41,16 @@ namespace CodeNamesClientSide.Windows
             mainMenulWindow.Show();
 
             this.Close();
+            musicManager.StopMusic();
+            base.OnClosed(e);
         }
 
-        
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (musicManager != null)
+            {
+                musicManager.Volume = (float)volumeSlider.Value;
+            }
+        }
     }
 }
