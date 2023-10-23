@@ -22,6 +22,18 @@ namespace CodeNamesClientSide.Windows
         public CodeNamesSettingsWindow()
         {
             InitializeComponent();
+            Goback.MouseLeftButtonDown += Goback_MouseLeftButtonDown;
         }
+
+        private void Goback_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MainMenuWindow mainMenulWindow = new MainMenuWindow();
+
+            mainMenulWindow.Show();
+
+            this.Close();
+        }
+
+        
     }
 }

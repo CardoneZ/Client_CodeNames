@@ -26,6 +26,7 @@
             <TabItem Header="{x:Static p:Resources.SearchPeopleButton}" Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="107,-4,-186,2">
             </TabItem>
         </TabControl>
+        <Image Source="../Media/Izquierda.png" Margin="930,193,147,-3" Grid.Row="1"></Image>
         <Button Content="{x:Static p:Resources.GoBackButton}"  HorizontalAlignment="Left" Margin="1075,198,0,0" VerticalAlignment="Top" Width="195" Height="60" Background="Gainsboro" FontFamily="Segoe UI Symbol" FontSize="48" Click="BtnGoBack_Click" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" Grid.Row="1"/>
     </Grid>
 </Window>
