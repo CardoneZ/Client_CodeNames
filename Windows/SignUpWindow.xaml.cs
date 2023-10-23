@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,11 +20,13 @@ namespace CodeNamesClientSide.Windows
     /// </summary>
     public partial class SignUpWindow : Window
     {
+        private MusicManager musicManager;
         public SignUpWindow()
         {
             InitializeComponent();
+            musicManager = new MusicManager("Media/Music/WitnessTestimony.wav");
+            musicManager.PlayMusic();
         }
-
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
             string username = TbNickname.Text;
@@ -46,6 +49,10 @@ namespace CodeNamesClientSide.Windows
             logInWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
+
         }
     }
 }

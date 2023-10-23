@@ -19,21 +19,28 @@ namespace CodeNamesClientSide.Windows
     /// </summary>
     public partial class MainMenuWindow : Window
     {
+        private MusicManager musicManager;
+
         public MainMenuWindow()
         {
             InitializeComponent();
 
             Settings.MouseLeftButtonDown += Settings_MouseLeftButtonDown;
             Profile.MouseLeftButtonDown += Profile_MouseLeftButtonDown;
+            musicManager = new MusicManager("Media/Music/FastestVersionSneakyAction.wav");
+            musicManager.PlayMusic();
         }
 
         private void Settings_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            CodeNamesSettingsWindow codeNamesSettingsWindow = new CodeNamesSettingsWindow();
+            CodeNamesSettingsWindow codeNamesSettingsWindow = new CodeNamesSettingsWindow(musicManager);
 
             codeNamesSettingsWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
         }
 
         private void BtnSocial_Click(object sender, RoutedEventArgs e)
@@ -43,6 +50,9 @@ namespace CodeNamesClientSide.Windows
             socialWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
         }
 
         private void BtnJoinGame_Click(object sender, RoutedEventArgs e)
@@ -57,6 +67,9 @@ namespace CodeNamesClientSide.Windows
             gameBoardSettingsWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
         }
 
         private void BtnExitGame_Click(object sender, RoutedEventArgs e)
@@ -71,6 +84,9 @@ namespace CodeNamesClientSide.Windows
             userProfileWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
         }
     }
 }
