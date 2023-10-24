@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Configuration;
+using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -29,11 +30,13 @@ namespace CodeNamesClientSide.Windows
         String password = "";
         String confirmationPassword = "";
 
+        private MusicManager musicManager;
         public SignUpWindow()
         {
             InitializeComponent();
+            musicManager = new MusicManager("Media/Music/WitnessTestimony.wav");
+            musicManager.PlayMusic();
         }
-
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
                SignUpRequest();
@@ -79,6 +82,10 @@ namespace CodeNamesClientSide.Windows
             logInWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
+
         }
 
         private void TbPassword_TextChanged(object sender, TextChangedEventArgs e)

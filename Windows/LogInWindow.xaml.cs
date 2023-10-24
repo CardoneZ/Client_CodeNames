@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace CodeNamesClientSide.Windows
 {
@@ -20,9 +22,13 @@ namespace CodeNamesClientSide.Windows
     /// </summary>
     public partial class LogInWindow : Window
     {
+        private MusicManager musicManager;
+
         public LogInWindow()
         {
             InitializeComponent();
+            musicManager = new MusicManager("Media/Music/BackgroundCheck.wav");
+            musicManager.PlayMusic();
         }
 
 
@@ -38,6 +44,9 @@ namespace CodeNamesClientSide.Windows
             signUpWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic();
+            base.OnClosed(e);
         }
 
         private void BtnPlayGuest_Click(object sender, RoutedEventArgs e)
@@ -53,6 +62,9 @@ namespace CodeNamesClientSide.Windows
             mainMenuWindow.Show();
 
             this.Close();
+
+            musicManager.StopMusic(); 
+            base.OnClosed(e);
         }
 
         private void BtnLogIn_Click(object sender, RoutedEventArgs e)
@@ -131,5 +143,8 @@ namespace CodeNamesClientSide.Windows
             return validStrings;
         }
         #endregion
+
+     
+
     }
 }
