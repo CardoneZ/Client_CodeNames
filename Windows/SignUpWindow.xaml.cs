@@ -36,10 +36,7 @@ namespace CodeNamesClientSide.Windows
 
         private void BtnSignUp_Click(object sender, RoutedEventArgs e)
         {
-            
                SignUpRequest();
-            
-  
 
         }
 
@@ -57,6 +54,7 @@ namespace CodeNamesClientSide.Windows
             {
                 string hashedPassword = Utilities.PasswordEncryptor.HashPassword(password);
                 client.AddUserAccountToDatabase(username, email, hashedPassword);
+                MessageBox.Show(hashedPassword, hashedPassword);
                 MessageBox.Show("El registro del usuario se ha realizado con éxito", "Registro Exitoso");
                 TbEmail.Clear();
                 TbPassword.Clear();
@@ -154,7 +152,7 @@ namespace CodeNamesClientSide.Windows
 
         private bool CheckExcessLength()
         {
-            bool validLength = username.Length <= 45 && email.Length <= 50 && password.Length <= 40;
+            bool validLength = username.Length <= 20 && email.Length <= 50 && password.Length <= 30;
 
             if (!validLength)
             {
@@ -167,7 +165,7 @@ namespace CodeNamesClientSide.Windows
 
         private bool CheckPassword()
         {
-            bool validPassword = Regex.IsMatch(password, "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,40}$");
+            bool validPassword = Regex.IsMatch(password, "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,30}$");
 
             if (!validPassword)
             {

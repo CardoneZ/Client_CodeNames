@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CodeNamesClientSide.Utilities
 {
-    internal class Player
+    public class Player
     {
-        private int idUserAccount;
-        private string nickname;
+        private int idPlayer;
+        private string username;
         private string password;
         private string email;
         private bool isGuest;
@@ -22,8 +22,8 @@ namespace CodeNamesClientSide.Utilities
 
         #endregion
 
-        public int IdUserAccount { get { return idUserAccount; } set { idUserAccount = value; } }
-        public string Nickname { get { return nickname; } set { nickname = value; } }
+        public int Idplayer { get { return idPlayer; } set { idPlayer = value; } }
+        public string Username { get { return username; } set { username = value; } }
         public string Password { get { return password; } set { password = value; } }
         public string Email { get { return email; } set { email = value; } }
         public bool IsGuest { get { return isGuest; } set { isGuest = value; } }
