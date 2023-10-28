@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="GameService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IPlayerManagerService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ILobbyService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IFriendListService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataModels" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPlayerManagerService_AddUserAccountToDatabase_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserAccountToDatabase" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManagerService_AddUserAccountToDatabase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserAccountToDatabaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManagerService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManagerService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManagerService_ShowUsersAccounts_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShowUsersAccounts" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManagerService_ShowUsersAccounts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShowUsersAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILobbyService_SubscribeToUserEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubscribeToUserEvents" />
+  </wsdl:message>
+  <wsdl:message name="ILobbyService_UnsubscribeFromUserEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnsubscribeFromUserEvents" />
+  </wsdl:message>
+  <wsdl:message name="ILobbyService_UserLoggedIn_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserLoggedIn" />
+  </wsdl:message>
+  <wsdl:message name="ILobbyService_UserLoggedOut_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserLoggedOut" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_SendFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_SendFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_AcceptFriendRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequest" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_AcceptFriendRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptFriendRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_GetFriendList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendList" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_FriendRequestReceived_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendRequestReceived" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_FriendRequestReceived_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendRequestReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_FriendRequestAccepted_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendRequestAccepted" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_FriendRequestAccepted_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendRequestAcceptedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_FriendListUpdated_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendListUpdated" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_FriendListUpdated_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:FriendListUpdatedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPlayerManagerService">
+    <wsdl:operation name="AddUserAccountToDatabase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManagerService/AddUserAccountToDatabase" message="tns:IPlayerManagerService_AddUserAccountToDatabase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManagerService/AddUserAccountToDatabaseResponse" message="tns:IPlayerManagerService_AddUserAccountToDatabase_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManagerService/Login" message="tns:IPlayerManagerService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManagerService/LoginResponse" message="tns:IPlayerManagerService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowUsersAccounts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManagerService/ShowUsersAccounts" message="tns:IPlayerManagerService_ShowUsersAccounts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManagerService/ShowUsersAccountsResponse" message="tns:IPlayerManagerService_ShowUsersAccounts_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ILobbyService">
+    <wsdl:operation name="SubscribeToUserEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyService/SubscribeToUserEvents" message="tns:ILobbyService_SubscribeToUserEvents_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeFromUserEvents">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILobbyService/UnsubscribeFromUserEvents" message="tns:ILobbyService_UnsubscribeFromUserEvents_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLoggedIn">
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyService/UserLoggedIn" message="tns:ILobbyService_UserLoggedIn_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLoggedOut">
+      <wsdl:output wsaw:Action="http://tempuri.org/ILobbyService/UserLoggedOut" message="tns:ILobbyService_UserLoggedOut_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFriendListService">
+    <wsdl:operation name="SendFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/SendFriendRequest" message="tns:IFriendListService_SendFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/SendFriendRequestResponse" message="tns:IFriendListService_SendFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/AcceptFriendRequest" message="tns:IFriendListService_AcceptFriendRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/AcceptFriendRequestResponse" message="tns:IFriendListService_AcceptFriendRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/GetFriendList" message="tns:IFriendListService_GetFriendList_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendRequestReceived">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestReceived" message="tns:IFriendListService_FriendRequestReceived_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestReceivedResponse" message="tns:IFriendListService_FriendRequestReceived_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendRequestAccepted">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestAccepted" message="tns:IFriendListService_FriendRequestAccepted_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestAcceptedResponse" message="tns:IFriendListService_FriendRequestAccepted_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FriendListUpdated">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/FriendListUpdated" message="tns:IFriendListService_FriendListUpdated_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/FriendListUpdatedResponse" message="tns:IFriendListService_FriendListUpdated_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IPlayerManagerService" type="tns:IPlayerManagerService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IPlayerManagerService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="AddUserAccountToDatabase">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManagerService/AddUserAccountToDatabase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManagerService/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowUsersAccounts">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManagerService/ShowUsersAccounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ILobbyService" type="tns:ILobbyService">
+    <wsp:PolicyReference URI="#NetTcpBinding_ILobbyService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SubscribeToUserEvents">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyService/SubscribeToUserEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeFromUserEvents">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyService/UnsubscribeFromUserEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UserLoggedIn">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyService/UserLoggedIn" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLoggedOut">
+      <soap12:operation soapAction="http://tempuri.org/ILobbyService/UserLoggedOut" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IFriendListService" type="tns:IFriendListService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IFriendListService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SendFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/SendFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptFriendRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/AcceptFriendRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriendList">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/GetFriendList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="FriendRequestReceived">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/FriendRequestReceived" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendRequestAccepted">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/FriendRequestAccepted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FriendListUpdated">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/FriendListUpdated" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GameService">
+    <wsdl:port name="NetTcpBinding_IPlayerManagerService" binding="tns:NetTcpBinding_IPlayerManagerService">
+      <soap12:address location="net.tcp://localhost:8081/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ILobbyService" binding="tns:NetTcpBinding_ILobbyService">
+      <soap12:address location="net.tcp://localhost:8081/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IFriendListService" binding="tns:NetTcpBinding_IFriendListService">
+      <soap12:address location="net.tcp://localhost:8081/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

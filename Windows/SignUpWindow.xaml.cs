@@ -51,13 +51,12 @@ namespace CodeNamesClientSide.Windows
             confirmationPassword = TbConfirmPassword.Text;
 
 
-            ServiceReference1.IPlayerManager client = new ServiceReference1.PlayerManagerClient();
+            CodeNamesService.IPlayerManagerService client = new  CodeNamesService.PlayerManagerServiceClient();
 
             if (CheckFields())
             {
                 string hashedPassword = Utilities.PasswordEncryptor.HashPassword(password);
                 client.AddUserAccountToDatabase(username, email, hashedPassword);
-                MessageBox.Show(hashedPassword, hashedPassword);
                 MessageBox.Show("El registro del usuario se ha realizado con éxito", "Registro Exitoso");
                 TbEmail.Clear();
                 TbPassword.Clear();
