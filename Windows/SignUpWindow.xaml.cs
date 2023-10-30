@@ -51,13 +51,12 @@ namespace CodeNamesClientSide.Windows
             confirmationPassword = TbConfirmPassword.Text;
 
 
-            ServiceReference1.IPlayerManager client = new ServiceReference1.PlayerManagerClient();
+            ServiceModel.IPlayerManager client = new ServiceModel.PlayerManagerClient();
 
             if (CheckFields())
             {
                 string hashedPassword = Utilities.PasswordEncryptor.HashPassword(password);
                 client.AddUserAccountToDatabase(username, email, hashedPassword);
-                MessageBox.Show(hashedPassword, hashedPassword);
                 MessageBox.Show("El registro del usuario se ha realizado con éxito", "Registro Exitoso");
                 TbEmail.Clear();
                 TbPassword.Clear();
@@ -88,10 +87,7 @@ namespace CodeNamesClientSide.Windows
 
         }
 
-        private void TbPassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       
 
         #region SignUpValidations
 
