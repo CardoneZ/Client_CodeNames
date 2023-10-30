@@ -84,7 +84,8 @@ namespace CodeNamesClientSide.Windows
                     if (CheckExcessLength(username, password))
 
                     {
-                        ServiceReference1.IPlayerManager client = new ServiceReference1.PlayerManagerClient();
+                        CodeNamesService.PlayerManagerServiceClient client = new CodeNamesService.PlayerManagerServiceClient();
+
 
                         var playerLogin = client.Login(username, Utilities.PasswordEncryptor.HashPassword(password));
 

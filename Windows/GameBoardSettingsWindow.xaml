@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="GameBoardSettings" Height="450" Width="800">
     <Grid>
-        
+        <ListBox x:Name="LibChat"  d:ItemsSource="{d:SampleData ItemCount=5}" Margin="62,77,366,200" SelectionChanged="ListBox_SelectionChanged"/>
+        <TextBox x:Name="TbMessage" HorizontalAlignment="Left" Margin="62,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="263" TextChanged="TextBox_TextChanged"/>
+        <Button x:Name="BtnSendMessage" Content="Send" HorizontalAlignment="Left" Margin="434,259,0,0" VerticalAlignment="Top" Height="18" Width="81" Click="BtnSendMessage_Click"/>
+
     </Grid>
 </Window>
