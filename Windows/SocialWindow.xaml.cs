@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CodeNamesClientSide.CodeNamesService;
+using ControlzEx.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +19,7 @@ namespace CodeNamesClientSide.Windows
     /// <summary>
     /// Interaction logic for SocialWindow.xaml
     /// </summary>
-    public partial class SocialWindow : Window
+    public partial class SocialWindow : Window, IFriendListServiceCallback
     {
         private MusicManager musicManager;
         public SocialWindow()
@@ -25,6 +27,16 @@ namespace CodeNamesClientSide.Windows
             InitializeComponent();
             musicManager = new MusicManager("Media/Music/BackgroundCheck.wav");
             musicManager.PlayMusic();
+        }
+
+        public void ShowFriends(Player[] friends)
+        {
+            
+        }
+
+        public void ShowGlobalUsers(Player[] users)
+        {
+            throw new NotImplementedException();
         }
 
         private void BtnGoBack_Click(object sender, RoutedEventArgs e)
@@ -38,5 +50,29 @@ namespace CodeNamesClientSide.Windows
             musicManager.StopMusic();
             base.OnClosed(e);
         }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Verificar qué pestaña está seleccionada
+            if (TacSocial.SelectedItem == TabGlobalUsers)
+            {
+                
+
+            }
+            else if (TacSocial.SelectedItem == TabRequest)
+            {
+                // Otra pestaña seleccionada
+                // Aquí puedes mostrar u ocultar los controles específicos para esta pestaña.
+            }
+            else
+            {
+            }
+            // Agrega más condiciones para otras pestañas si es necesario.
+        }
+
+        
+
+
+
     }
 }

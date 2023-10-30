@@ -91,22 +91,50 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="showGlobalUsers">
+  <xs:element name="GetGlobalUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idUser" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGlobalUsersResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="showGlobalUsersResponse">
+  <xs:element name="GetFriends">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idUser" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFriendsResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="showFriends">
+  <xs:element name="ShowGlobalUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataModels" minOccurs="0" name="users" nillable="true" type="q2:ArrayOfPlayer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowGlobalUsersResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="showFriendsResponse">
+  <xs:element name="ShowFriends">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DataModels" minOccurs="0" name="friends" nillable="true" type="q3:ArrayOfPlayer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShowFriendsResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -162,7 +190,7 @@
   <xs:element name="RecoverRoomPlayersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="RecoverRoomPlayersResult" nillable="true" type="q2:ArrayOfPlayer" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="RecoverRoomPlayersResult" nillable="true" type="q4:ArrayOfPlayer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

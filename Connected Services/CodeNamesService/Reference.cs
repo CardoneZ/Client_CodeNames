@@ -26,10 +26,10 @@ namespace CodeNamesClientSide.CodeNamesService {
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
+        private int IdPlayerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int Player_IdField;
+        private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -58,6 +58,19 @@ namespace CodeNamesClientSide.CodeNamesService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdPlayer {
+            get {
+                return this.IdPlayerField;
+            }
+            set {
+                if ((this.IdPlayerField.Equals(value) != true)) {
+                    this.IdPlayerField = value;
+                    this.RaisePropertyChanged("IdPlayer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Password {
             get {
                 return this.PasswordField;
@@ -66,19 +79,6 @@ namespace CodeNamesClientSide.CodeNamesService {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Player_Id {
-            get {
-                return this.Player_IdField;
-            }
-            set {
-                if ((this.Player_IdField.Equals(value) != true)) {
-                    this.Player_IdField = value;
-                    this.RaisePropertyChanged("Player_Id");
                 }
             }
         }
@@ -361,16 +361,28 @@ namespace CodeNamesClientSide.CodeNamesService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/ResponseToFriendshipRequest", ReplyAction="http://tempuri.org/IFriendListService/ResponseToFriendshipRequestResponse")]
         System.Threading.Tasks.Task ResponseToFriendshipRequestAsync(string response, int idRequest);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/GetGlobalUsers", ReplyAction="http://tempuri.org/IFriendListService/GetGlobalUsersResponse")]
+        void GetGlobalUsers(int idUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/GetGlobalUsers", ReplyAction="http://tempuri.org/IFriendListService/GetGlobalUsersResponse")]
+        System.Threading.Tasks.Task GetGlobalUsersAsync(int idUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/GetFriends", ReplyAction="http://tempuri.org/IFriendListService/GetFriendsResponse")]
+        void GetFriends(int idUser);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/GetFriends", ReplyAction="http://tempuri.org/IFriendListService/GetFriendsResponse")]
+        System.Threading.Tasks.Task GetFriendsAsync(int idUser);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IFriendListServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/showGlobalUsers", ReplyAction="http://tempuri.org/IFriendListService/showGlobalUsersResponse")]
-        void showGlobalUsers();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/ShowGlobalUsers", ReplyAction="http://tempuri.org/IFriendListService/ShowGlobalUsersResponse")]
+        void ShowGlobalUsers(CodeNamesClientSide.CodeNamesService.Player[] users);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/showFriends", ReplyAction="http://tempuri.org/IFriendListService/showFriendsResponse")]
-        void showFriends();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/ShowFriends", ReplyAction="http://tempuri.org/IFriendListService/ShowFriendsResponse")]
+        void ShowFriends(CodeNamesClientSide.CodeNamesService.Player[] friends);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -415,6 +427,22 @@ namespace CodeNamesClientSide.CodeNamesService {
         
         public System.Threading.Tasks.Task ResponseToFriendshipRequestAsync(string response, int idRequest) {
             return base.Channel.ResponseToFriendshipRequestAsync(response, idRequest);
+        }
+        
+        public void GetGlobalUsers(int idUser) {
+            base.Channel.GetGlobalUsers(idUser);
+        }
+        
+        public System.Threading.Tasks.Task GetGlobalUsersAsync(int idUser) {
+            return base.Channel.GetGlobalUsersAsync(idUser);
+        }
+        
+        public void GetFriends(int idUser) {
+            base.Channel.GetFriends(idUser);
+        }
+        
+        public System.Threading.Tasks.Task GetFriendsAsync(int idUser) {
+            return base.Channel.GetFriendsAsync(idUser);
         }
     }
     

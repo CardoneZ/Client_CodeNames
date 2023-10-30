@@ -93,7 +93,7 @@ namespace CodeNamesClientSide.Windows
                         {
                                 Utilities.Player.PlayerClient = new Utilities.Player()
                                 {
-                                    Idplayer = playerLogin.Player_Id,
+                                    Idplayer = playerLogin.IdPlayer,
                                     Username= playerLogin.Username,
                                     Email = playerLogin.Email,
                                     IsGuest = false

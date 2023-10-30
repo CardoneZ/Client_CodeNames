@@ -18,8 +18,10 @@
         <Image Source="../Media/Izquierda.png" Margin="930,193,147,-3" Grid.Row="1"></Image>
         <Button Content="{x:Static p:Resources.GoBackButton}"  HorizontalAlignment="Left" Margin="1075,198,0,0" VerticalAlignment="Top" Width="195" Height="60" Background="Gainsboro" FontFamily="Segoe UI Symbol" FontSize="48" Click="BtnGoBack_Click" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" Grid.Row="1"/>
         <Label Content="GLOBAL USERS" HorizontalAlignment="Left" Margin="77,40,0,0" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" RenderTransformOrigin="0.339,0.351"/>
-        <TabControl Margin="0,134,0,134" Grid.RowSpan="2">
-            <TabItem Header="Global users">
+
+        <TabControl x:Name ="TacSocial" Margin="0,134,0,134" Grid.RowSpan="2">
+            
+            <TabItem x:Name="TabGlobalUsers" Header="Global Users" Margin="-2,-2,-2,2">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="148*"/>
@@ -29,15 +31,16 @@
                     <Button Content="SALA MADRE" HorizontalAlignment="Left" Margin="131,106,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Friend request received">
+            <TabItem x:Name="TabRequest"  Header="Friendship request received">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="122*"/>
+                        <ColumnDefinition Width="515*"/>
                     </Grid.ColumnDefinitions>
                     <Button Content="HALA MADRID" HorizontalAlignment="Left" Margin="129,53,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="My friends">
+            <TabItem x:Name="TabMyFriends" Header="My Friends">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
