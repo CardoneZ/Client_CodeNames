@@ -3,6 +3,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,17 +15,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace CodeNamesClientSide.Windows
 {
     /// <summary>
     /// Interaction logic for GameBoardSettings.xaml
     /// </summary>
-    public partial class GameBoardSettings : Window, ILobbyServiceCallback
+    public partial class GameBoardSettings : Window,IGameManagerServiceCallback
     {
-
         private CodeNamesService.Player[] playerList;
-        private LobbyServiceClient lobbyServiceClient;
+        private GameManagerServiceClient gameManagerServiceClient;
         private bool isNewRoom;
         private string roomId;
         private bool isConected = false;
@@ -41,15 +42,6 @@ namespace CodeNamesClientSide.Windows
 
         }
 
-        public void UserLoggedIn(string username)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UserLoggedOut(string username)
-        {
-            throw new NotImplementedException();
-        }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -67,8 +59,69 @@ namespace CodeNamesClientSide.Windows
             if (!string.IsNullOrEmpty(message))
             {
                 chatMessages.Add(message);
-                LibChat.Items.Refresh(); // Actualiza la ListBox
-                TbMessage.Clear(); // Borra el contenido del TextBox
+                LibChat.Items.Refresh();
+                TbMessage.Clear();
+                gameManagerServiceClient = new GameManagerServiceClient(new InstanceContext(this));
+                gameManagerServiceClient.SendMessage(message, Utilities.Player.PlayerClient.Username, RoomId);
+
+            }
+        }
+        public bool CreateNewRoom(bool isNewRoom)
+        {
+            var status = true;
+
+            this.isNewRoom = isNewRoom;
+            if (isNewRoom)
+            {
+                //btnStartGame.Visibility = Visibility.Visible;
+                //gridLobby.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //btnStartGame.Visibility = Visibility.Collapsed;
+            }
+
+            try
+            {
+                Start();
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                status = false;
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                status = false;
+            }
+            catch (TimeoutException ex)
+            {
+                status = false;
+            }
+            return status;
+        }
+
+        public void MessageCallBack(string message)
+        {
+            chatMessages.Add(message);
+            LibChat.Items.Refresh();
+
+        }
+
+        private void Start()
+        {
+            if (!isConected)
+            {
+                gameManagerServiceClient = new GameManagerServiceClient(new InstanceContext(this));
+                if (isNewRoom)
+                {
+                    roomId = gameManagerServiceClient.GenerateRoomCode();
+                    //txtCode.Text = roomId;
+                    gameManagerServiceClient.CreateRoom(Utilities.Player.PlayerClient.Username, roomId);
+                    isHost = true;
+                }
+                //txtCode.Text = roomId;
+                gameManagerServiceClient.Connect(Utilities.Player.PlayerClient.Username, roomId, " Un nuevo usuario se ha unido a la sala");
+                isConected = true;
             }
         }
     }

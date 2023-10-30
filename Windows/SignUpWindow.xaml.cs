@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using CodeNamesClientSide.CodeNamesService;
 
 namespace CodeNamesClientSide.Windows
 {
@@ -51,7 +52,8 @@ namespace CodeNamesClientSide.Windows
             confirmationPassword = TbConfirmPassword.Text;
 
 
-            CodeNamesService.IPlayerManagerService client = new  CodeNamesService.PlayerManagerServiceClient();
+            CodeNamesService.PlayerManagerServiceClient client = new CodeNamesService.PlayerManagerServiceClient();
+
 
             if (CheckFields())
             {

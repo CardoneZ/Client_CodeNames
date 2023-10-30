@@ -87,12 +87,41 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IGameManagerService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataModels" />
-      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Logic" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPlayerManagerService_AddUserAccountToDatabase_InputMessage">
@@ -125,38 +154,71 @@
   <wsdl:message name="ILobbyService_UserLoggedOut_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UserLoggedOut" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_SendFriendRequest_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendFriendRequest" />
+  <wsdl:message name="IFriendListService_SendFriendshipRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendshipRequest" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_SendFriendRequest_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendFriendRequestResponse" />
+  <wsdl:message name="IFriendListService_SendFriendshipRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendFriendshipRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_AcceptFriendRequest_InputMessage">
-    <wsdl:part name="parameters" element="tns:AcceptFriendRequest" />
+  <wsdl:message name="IFriendListService_ResponseToFriendshipRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResponseToFriendshipRequest" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_AcceptFriendRequest_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AcceptFriendRequestResponse" />
+  <wsdl:message name="IFriendListService_ResponseToFriendshipRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResponseToFriendshipRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_GetFriendList_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetFriendList" />
+  <wsdl:message name="IFriendListService_showGlobalUsers_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:showGlobalUsers" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_FriendRequestReceived_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:FriendRequestReceived" />
+  <wsdl:message name="IFriendListService_showGlobalUsers_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:showGlobalUsersResponse" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_FriendRequestReceived_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:FriendRequestReceivedResponse" />
+  <wsdl:message name="IFriendListService_showFriends_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:showFriends" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_FriendRequestAccepted_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:FriendRequestAccepted" />
+  <wsdl:message name="IFriendListService_showFriends_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:showFriendsResponse" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_FriendRequestAccepted_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:FriendRequestAcceptedResponse" />
+  <wsdl:message name="IGameManagerService_CreateRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRoom" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_FriendListUpdated_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:FriendListUpdated" />
+  <wsdl:message name="IGameManagerService_CreateRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRoomResponse" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_FriendListUpdated_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:FriendListUpdatedResponse" />
+  <wsdl:message name="IGameManagerService_GenerateRoomCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCode" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_GenerateRoomCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_CheckQuota_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckQuota" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_CheckQuota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckQuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_RecoverRoomPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverRoomPlayers" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_RecoverRoomPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverRoomPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_Disconnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="IGameManagerService_MessageCallBack_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MessageCallBack" />
   </wsdl:message>
   <wsdl:portType name="IPlayerManagerService">
     <wsdl:operation name="AddUserAccountToDatabase">
@@ -187,28 +249,53 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IFriendListService">
-    <wsdl:operation name="SendFriendRequest">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/SendFriendRequest" message="tns:IFriendListService_SendFriendRequest_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/SendFriendRequestResponse" message="tns:IFriendListService_SendFriendRequest_OutputMessage" />
+    <wsdl:operation name="SendFriendshipRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/SendFriendshipRequest" message="tns:IFriendListService_SendFriendshipRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/SendFriendshipRequestResponse" message="tns:IFriendListService_SendFriendshipRequest_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AcceptFriendRequest">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/AcceptFriendRequest" message="tns:IFriendListService_AcceptFriendRequest_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/AcceptFriendRequestResponse" message="tns:IFriendListService_AcceptFriendRequest_OutputMessage" />
+    <wsdl:operation name="ResponseToFriendshipRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/ResponseToFriendshipRequest" message="tns:IFriendListService_ResponseToFriendshipRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/ResponseToFriendshipRequestResponse" message="tns:IFriendListService_ResponseToFriendshipRequest_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetFriendList">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/GetFriendList" message="tns:IFriendListService_GetFriendList_InputMessage" />
+    <wsdl:operation name="showGlobalUsers">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/showGlobalUsers" message="tns:IFriendListService_showGlobalUsers_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/showGlobalUsersResponse" message="tns:IFriendListService_showGlobalUsers_InputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FriendRequestReceived">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestReceived" message="tns:IFriendListService_FriendRequestReceived_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestReceivedResponse" message="tns:IFriendListService_FriendRequestReceived_InputCallbackMessage" />
+    <wsdl:operation name="showFriends">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/showFriends" message="tns:IFriendListService_showFriends_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/showFriendsResponse" message="tns:IFriendListService_showFriends_InputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FriendRequestAccepted">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestAccepted" message="tns:IFriendListService_FriendRequestAccepted_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/FriendRequestAcceptedResponse" message="tns:IFriendListService_FriendRequestAccepted_InputCallbackMessage" />
+  </wsdl:portType>
+  <wsdl:portType name="IGameManagerService">
+    <wsdl:operation name="CreateRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagerService/CreateRoom" message="tns:IGameManagerService_CreateRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagerService/CreateRoomResponse" message="tns:IGameManagerService_CreateRoom_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="FriendListUpdated">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/FriendListUpdated" message="tns:IFriendListService_FriendListUpdated_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/FriendListUpdatedResponse" message="tns:IFriendListService_FriendListUpdated_InputCallbackMessage" />
+    <wsdl:operation name="GenerateRoomCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagerService/GenerateRoomCode" message="tns:IGameManagerService_GenerateRoomCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagerService/GenerateRoomCodeResponse" message="tns:IGameManagerService_GenerateRoomCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQuota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagerService/CheckQuota" message="tns:IGameManagerService_CheckQuota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagerService/CheckQuotaResponse" message="tns:IGameManagerService_CheckQuota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecoverRoomPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagerService/RecoverRoomPlayers" message="tns:IGameManagerService_RecoverRoomPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagerService/RecoverRoomPlayersResponse" message="tns:IGameManagerService_RecoverRoomPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagerService/Connect" message="tns:IGameManagerService_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagerService/ConnectResponse" message="tns:IGameManagerService_Connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagerService/Disconnect" message="tns:IGameManagerService_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagerService/DisconnectResponse" message="tns:IGameManagerService_Disconnect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameManagerService/SendMessage" message="tns:IGameManagerService_SendMessage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MessageCallBack">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameManagerService/MessageCallBack" message="tns:IGameManagerService_MessageCallBack_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerManagerService" type="tns:IPlayerManagerService">
@@ -273,8 +360,8 @@
   <wsdl:binding name="NetTcpBinding_IFriendListService" type="tns:IFriendListService">
     <wsp:PolicyReference URI="#NetTcpBinding_IFriendListService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="SendFriendRequest">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/SendFriendRequest" style="document" />
+    <wsdl:operation name="SendFriendshipRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/SendFriendshipRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -282,8 +369,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AcceptFriendRequest">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/AcceptFriendRequest" style="document" />
+    <wsdl:operation name="ResponseToFriendshipRequest">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/ResponseToFriendshipRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -291,14 +378,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetFriendList">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/GetFriendList" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="FriendRequestReceived">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/FriendRequestReceived" style="document" />
+    <wsdl:operation name="showGlobalUsers">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/showGlobalUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -306,8 +387,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FriendRequestAccepted">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/FriendRequestAccepted" style="document" />
+    <wsdl:operation name="showFriends">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/showFriends" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -315,11 +396,72 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FriendListUpdated">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/FriendListUpdated" style="document" />
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IGameManagerService" type="tns:IGameManagerService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IGameManagerService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="CreateRoom">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/CreateRoom" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateRoomCode">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/GenerateRoomCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQuota">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/CheckQuota" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecoverRoomPlayers">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/RecoverRoomPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/Connect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="MessageCallBack">
+      <soap12:operation soapAction="http://tempuri.org/IGameManagerService/MessageCallBack" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -345,6 +487,15 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IFriendListService" binding="tns:NetTcpBinding_IFriendListService">
+      <soap12:address location="net.tcp://localhost:8081/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IGameManagerService" binding="tns:NetTcpBinding_IGameManagerService">
       <soap12:address location="net.tcp://localhost:8081/Services" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>

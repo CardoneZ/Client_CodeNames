@@ -206,10 +206,10 @@
     <None Include="Connected Services\CodeNamesService\CodeNamesClientSide.CodeNamesService.Player.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\CodeNamesService\GameService.wsdl" />
-    <None Include="Connected Services\CodeNamesService\item.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Connected Services\CodeNamesService\CodeNamesClientSide.CodeNamesService.Player1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\CodeNamesService\GameService.wsdl" />
     <None Include="Connected Services\CodeNamesService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -217,6 +217,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\CodeNamesService\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CodeNamesService\item4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

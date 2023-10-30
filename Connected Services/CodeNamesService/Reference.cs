@@ -106,6 +106,99 @@ namespace CodeNamesClientSide.CodeNamesService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Player", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
+    [System.SerializableAttribute()]
+    public partial class Player1 : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NicknameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int PlayerIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nickname {
+            get {
+                return this.NicknameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NicknameField, value) != true)) {
+                    this.NicknameField = value;
+                    this.RaisePropertyChanged("Nickname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int PlayerId {
+            get {
+                return this.PlayerIdField;
+            }
+            set {
+                if ((this.PlayerIdField.Equals(value) != true)) {
+                    this.PlayerIdField = value;
+                    this.RaisePropertyChanged("PlayerId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CodeNamesService.IPlayerManagerService")]
     public interface IPlayerManagerService {
@@ -257,36 +350,27 @@ namespace CodeNamesClientSide.CodeNamesService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CodeNamesService.IFriendListService", CallbackContract=typeof(CodeNamesClientSide.CodeNamesService.IFriendListServiceCallback))]
     public interface IFriendListService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/SendFriendRequest", ReplyAction="http://tempuri.org/IFriendListService/SendFriendRequestResponse")]
-        void SendFriendRequest(string toUser);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/SendFriendshipRequest", ReplyAction="http://tempuri.org/IFriendListService/SendFriendshipRequestResponse")]
+        void SendFriendshipRequest(int idSender, int idReceiver);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/SendFriendRequest", ReplyAction="http://tempuri.org/IFriendListService/SendFriendRequestResponse")]
-        System.Threading.Tasks.Task SendFriendRequestAsync(string toUser);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/SendFriendshipRequest", ReplyAction="http://tempuri.org/IFriendListService/SendFriendshipRequestResponse")]
+        System.Threading.Tasks.Task SendFriendshipRequestAsync(int idSender, int idReceiver);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/AcceptFriendRequest", ReplyAction="http://tempuri.org/IFriendListService/AcceptFriendRequestResponse")]
-        void AcceptFriendRequest(string fromUser);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/ResponseToFriendshipRequest", ReplyAction="http://tempuri.org/IFriendListService/ResponseToFriendshipRequestResponse")]
+        void ResponseToFriendshipRequest(string response, int idRequest);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/AcceptFriendRequest", ReplyAction="http://tempuri.org/IFriendListService/AcceptFriendRequestResponse")]
-        System.Threading.Tasks.Task AcceptFriendRequestAsync(string fromUser);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendListService/GetFriendList")]
-        void GetFriendList();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IFriendListService/GetFriendList")]
-        System.Threading.Tasks.Task GetFriendListAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/ResponseToFriendshipRequest", ReplyAction="http://tempuri.org/IFriendListService/ResponseToFriendshipRequestResponse")]
+        System.Threading.Tasks.Task ResponseToFriendshipRequestAsync(string response, int idRequest);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IFriendListServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/FriendRequestReceived", ReplyAction="http://tempuri.org/IFriendListService/FriendRequestReceivedResponse")]
-        void FriendRequestReceived(string fromUser);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/showGlobalUsers", ReplyAction="http://tempuri.org/IFriendListService/showGlobalUsersResponse")]
+        void showGlobalUsers();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/FriendRequestAccepted", ReplyAction="http://tempuri.org/IFriendListService/FriendRequestAcceptedResponse")]
-        void FriendRequestAccepted(string fromUser);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/FriendListUpdated", ReplyAction="http://tempuri.org/IFriendListService/FriendListUpdatedResponse")]
-        void FriendListUpdated(string[] friends);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFriendListService/showFriends", ReplyAction="http://tempuri.org/IFriendListService/showFriendsResponse")]
+        void showFriends();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -317,28 +401,159 @@ namespace CodeNamesClientSide.CodeNamesService {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void SendFriendRequest(string toUser) {
-            base.Channel.SendFriendRequest(toUser);
+        public void SendFriendshipRequest(int idSender, int idReceiver) {
+            base.Channel.SendFriendshipRequest(idSender, idReceiver);
         }
         
-        public System.Threading.Tasks.Task SendFriendRequestAsync(string toUser) {
-            return base.Channel.SendFriendRequestAsync(toUser);
+        public System.Threading.Tasks.Task SendFriendshipRequestAsync(int idSender, int idReceiver) {
+            return base.Channel.SendFriendshipRequestAsync(idSender, idReceiver);
         }
         
-        public void AcceptFriendRequest(string fromUser) {
-            base.Channel.AcceptFriendRequest(fromUser);
+        public void ResponseToFriendshipRequest(string response, int idRequest) {
+            base.Channel.ResponseToFriendshipRequest(response, idRequest);
         }
         
-        public System.Threading.Tasks.Task AcceptFriendRequestAsync(string fromUser) {
-            return base.Channel.AcceptFriendRequestAsync(fromUser);
+        public System.Threading.Tasks.Task ResponseToFriendshipRequestAsync(string response, int idRequest) {
+            return base.Channel.ResponseToFriendshipRequestAsync(response, idRequest);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CodeNamesService.IGameManagerService", CallbackContract=typeof(CodeNamesClientSide.CodeNamesService.IGameManagerServiceCallback))]
+    public interface IGameManagerService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/CreateRoom", ReplyAction="http://tempuri.org/IGameManagerService/CreateRoomResponse")]
+        bool CreateRoom(string hostUsername, string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/CreateRoom", ReplyAction="http://tempuri.org/IGameManagerService/CreateRoomResponse")]
+        System.Threading.Tasks.Task<bool> CreateRoomAsync(string hostUsername, string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/GenerateRoomCode", ReplyAction="http://tempuri.org/IGameManagerService/GenerateRoomCodeResponse")]
+        string GenerateRoomCode();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/GenerateRoomCode", ReplyAction="http://tempuri.org/IGameManagerService/GenerateRoomCodeResponse")]
+        System.Threading.Tasks.Task<string> GenerateRoomCodeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/CheckQuota", ReplyAction="http://tempuri.org/IGameManagerService/CheckQuotaResponse")]
+        bool CheckQuota(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/CheckQuota", ReplyAction="http://tempuri.org/IGameManagerService/CheckQuotaResponse")]
+        System.Threading.Tasks.Task<bool> CheckQuotaAsync(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IGameManagerService/RecoverRoomPlayersResponse")]
+        CodeNamesClientSide.CodeNamesService.Player1[] RecoverRoomPlayers(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IGameManagerService/RecoverRoomPlayersResponse")]
+        System.Threading.Tasks.Task<CodeNamesClientSide.CodeNamesService.Player1[]> RecoverRoomPlayersAsync(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/Connect", ReplyAction="http://tempuri.org/IGameManagerService/ConnectResponse")]
+        void Connect(string username, string roomId, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/Connect", ReplyAction="http://tempuri.org/IGameManagerService/ConnectResponse")]
+        System.Threading.Tasks.Task ConnectAsync(string username, string roomId, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/Disconnect", ReplyAction="http://tempuri.org/IGameManagerService/DisconnectResponse")]
+        void Disconnect(string username, string roomId, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameManagerService/Disconnect", ReplyAction="http://tempuri.org/IGameManagerService/DisconnectResponse")]
+        System.Threading.Tasks.Task DisconnectAsync(string username, string roomId, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagerService/SendMessage")]
+        void SendMessage(string message, string username, string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagerService/SendMessage")]
+        System.Threading.Tasks.Task SendMessageAsync(string message, string username, string roomId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameManagerServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameManagerService/MessageCallBack")]
+        void MessageCallBack(string message);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameManagerServiceChannel : CodeNamesClientSide.CodeNamesService.IGameManagerService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class GameManagerServiceClient : System.ServiceModel.DuplexClientBase<CodeNamesClientSide.CodeNamesService.IGameManagerService>, CodeNamesClientSide.CodeNamesService.IGameManagerService {
+        
+        public GameManagerServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public void GetFriendList() {
-            base.Channel.GetFriendList();
+        public GameManagerServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public System.Threading.Tasks.Task GetFriendListAsync() {
-            return base.Channel.GetFriendListAsync();
+        public GameManagerServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GameManagerServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public GameManagerServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public bool CreateRoom(string hostUsername, string roomId) {
+            return base.Channel.CreateRoom(hostUsername, roomId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CreateRoomAsync(string hostUsername, string roomId) {
+            return base.Channel.CreateRoomAsync(hostUsername, roomId);
+        }
+        
+        public string GenerateRoomCode() {
+            return base.Channel.GenerateRoomCode();
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateRoomCodeAsync() {
+            return base.Channel.GenerateRoomCodeAsync();
+        }
+        
+        public bool CheckQuota(string roomId) {
+            return base.Channel.CheckQuota(roomId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckQuotaAsync(string roomId) {
+            return base.Channel.CheckQuotaAsync(roomId);
+        }
+        
+        public CodeNamesClientSide.CodeNamesService.Player1[] RecoverRoomPlayers(string roomId) {
+            return base.Channel.RecoverRoomPlayers(roomId);
+        }
+        
+        public System.Threading.Tasks.Task<CodeNamesClientSide.CodeNamesService.Player1[]> RecoverRoomPlayersAsync(string roomId) {
+            return base.Channel.RecoverRoomPlayersAsync(roomId);
+        }
+        
+        public void Connect(string username, string roomId, string message) {
+            base.Channel.Connect(username, roomId, message);
+        }
+        
+        public System.Threading.Tasks.Task ConnectAsync(string username, string roomId, string message) {
+            return base.Channel.ConnectAsync(username, roomId, message);
+        }
+        
+        public void Disconnect(string username, string roomId, string message) {
+            base.Channel.Disconnect(username, roomId, message);
+        }
+        
+        public System.Threading.Tasks.Task DisconnectAsync(string username, string roomId, string message) {
+            return base.Channel.DisconnectAsync(username, roomId, message);
+        }
+        
+        public void SendMessage(string message, string username, string roomId) {
+            base.Channel.SendMessage(message, username, roomId);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageAsync(string message, string username, string roomId) {
+            return base.Channel.SendMessageAsync(message, username, roomId);
         }
     }
 }
