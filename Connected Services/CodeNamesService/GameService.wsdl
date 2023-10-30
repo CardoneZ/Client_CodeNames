@@ -166,17 +166,29 @@
   <wsdl:message name="IFriendListService_ResponseToFriendshipRequest_OutputMessage">
     <wsdl:part name="parameters" element="tns:ResponseToFriendshipRequestResponse" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_showGlobalUsers_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:showGlobalUsers" />
+  <wsdl:message name="IFriendListService_GetGlobalUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalUsers" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_showGlobalUsers_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:showGlobalUsersResponse" />
+  <wsdl:message name="IFriendListService_GetGlobalUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalUsersResponse" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_showFriends_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:showFriends" />
+  <wsdl:message name="IFriendListService_GetFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriends" />
   </wsdl:message>
-  <wsdl:message name="IFriendListService_showFriends_InputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:showFriendsResponse" />
+  <wsdl:message name="IFriendListService_GetFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_ShowGlobalUsers_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowGlobalUsers" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_ShowGlobalUsers_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowGlobalUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_ShowFriends_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowFriends" />
+  </wsdl:message>
+  <wsdl:message name="IFriendListService_ShowFriends_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ShowFriendsResponse" />
   </wsdl:message>
   <wsdl:message name="IGameManagerService_CreateRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateRoom" />
@@ -257,13 +269,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/ResponseToFriendshipRequest" message="tns:IFriendListService_ResponseToFriendshipRequest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/ResponseToFriendshipRequestResponse" message="tns:IFriendListService_ResponseToFriendshipRequest_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="showGlobalUsers">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/showGlobalUsers" message="tns:IFriendListService_showGlobalUsers_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/showGlobalUsersResponse" message="tns:IFriendListService_showGlobalUsers_InputCallbackMessage" />
+    <wsdl:operation name="GetGlobalUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/GetGlobalUsers" message="tns:IFriendListService_GetGlobalUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/GetGlobalUsersResponse" message="tns:IFriendListService_GetGlobalUsers_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="showFriends">
-      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/showFriends" message="tns:IFriendListService_showFriends_OutputCallbackMessage" />
-      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/showFriendsResponse" message="tns:IFriendListService_showFriends_InputCallbackMessage" />
+    <wsdl:operation name="GetFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/GetFriends" message="tns:IFriendListService_GetFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/GetFriendsResponse" message="tns:IFriendListService_GetFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowGlobalUsers">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/ShowGlobalUsers" message="tns:IFriendListService_ShowGlobalUsers_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/ShowGlobalUsersResponse" message="tns:IFriendListService_ShowGlobalUsers_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShowFriends">
+      <wsdl:output wsaw:Action="http://tempuri.org/IFriendListService/ShowFriends" message="tns:IFriendListService_ShowFriends_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFriendListService/ShowFriendsResponse" message="tns:IFriendListService_ShowFriends_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameManagerService">
@@ -378,8 +398,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="showGlobalUsers">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/showGlobalUsers" style="document" />
+    <wsdl:operation name="GetGlobalUsers">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/GetGlobalUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -387,8 +407,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="showFriends">
-      <soap12:operation soapAction="http://tempuri.org/IFriendListService/showFriends" style="document" />
+    <wsdl:operation name="GetFriends">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/GetFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowGlobalUsers">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/ShowGlobalUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ShowFriends">
+      <soap12:operation soapAction="http://tempuri.org/IFriendListService/ShowFriends" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

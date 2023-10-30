@@ -84,12 +84,8 @@ namespace CodeNamesClientSide.Windows
                     if (CheckExcessLength(username, password))
 
                     {
-<<<<<<< HEAD
-                        ServiceModel.IPlayerManager client = new ServiceModel.PlayerManagerClient();
-=======
                         CodeNamesService.PlayerManagerServiceClient client = new CodeNamesService.PlayerManagerServiceClient();
 
->>>>>>> efcb2f772394ff40c02550feb37dbc2704b45123
 
                         var playerLogin = client.Login(username, Utilities.PasswordEncryptor.HashPassword(password));
 
@@ -97,8 +93,9 @@ namespace CodeNamesClientSide.Windows
                         {
                                 Utilities.Player.PlayerClient = new Utilities.Player()
                                 {
-                                    Idplayer = playerLogin.Player_Id,
-                                    Username= playerLogin.Nickname,
+                                    Idplayer = playerLogin.IdPlayer,
+                                    Username= playerLogin.Username,
+
                                     Email = playerLogin.Email,
                                     IsGuest = false
                                 };
