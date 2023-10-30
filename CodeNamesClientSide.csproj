@@ -109,7 +109,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
+    <Compile Include="Connected Services\ServiceModel\Reference.cs">
+=======
     <Compile Include="Connected Services\CodeNamesService\Reference.cs">
+>>>>>>> efcb2f772394ff40c02550feb37dbc2704b45123
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -203,6 +207,19 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+<<<<<<< HEAD
+    <None Include="Connected Services\ServiceModel\CodeNamesClientSide.ServiceModel.Player.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceModel\GameService.wsdl" />
+    <None Include="Connected Services\ServiceModel\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceModel\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceModel\item2.xsd">
+=======
     <None Include="Connected Services\CodeNamesService\CodeNamesClientSide.CodeNamesService.Player.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -220,6 +237,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\CodeNamesService\item4.xsd">
+>>>>>>> efcb2f772394ff40c02550feb37dbc2704b45123
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -261,6 +279,16 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <None Include="Connected Services\ServiceModel\item.disco" />
+    <None Include="Connected Services\ServiceModel\configuration91.svcinfo" />
+    <None Include="Connected Services\ServiceModel\configuration.svcinfo" />
+    <None Include="Connected Services\ServiceModel\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Resource Include="Media\FlechaAbajo.png" />
+=======
     <None Include="Connected Services\CodeNamesService\item.disco" />
     <None Include="Connected Services\CodeNamesService\configuration91.svcinfo" />
     <None Include="Connected Services\CodeNamesService\configuration.svcinfo" />
@@ -268,6 +296,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+>>>>>>> efcb2f772394ff40c02550feb37dbc2704b45123
     <Content Include="Media\Music\BackgroundCheck.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -288,7 +317,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <WCFMetadataStorage Include="Connected Services\ServiceModel\" />
+=======
     <WCFMetadataStorage Include="Connected Services\CodeNamesService\" />
+>>>>>>> efcb2f772394ff40c02550feb37dbc2704b45123
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

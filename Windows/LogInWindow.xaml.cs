@@ -95,6 +95,7 @@ namespace CodeNamesClientSide.Windows
                                 {
                                     Idplayer = playerLogin.IdPlayer,
                                     Username= playerLogin.Username,
+
                                     Email = playerLogin.Email,
                                     IsGuest = false
                                 };

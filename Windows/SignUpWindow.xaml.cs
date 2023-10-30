@@ -52,8 +52,12 @@ namespace CodeNamesClientSide.Windows
             confirmationPassword = TbConfirmPassword.Text;
 
 
+<<<<<<< HEAD
+            ServiceModel.IPlayerManager client = new ServiceModel.PlayerManagerClient();
+=======
             CodeNamesService.PlayerManagerServiceClient client = new CodeNamesService.PlayerManagerServiceClient();
 
+>>>>>>> efcb2f772394ff40c02550feb37dbc2704b45123
 
             if (CheckFields())
             {
@@ -89,10 +93,7 @@ namespace CodeNamesClientSide.Windows
 
         }
 
-        private void TbPassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       
 
         #region SignUpValidations
 
